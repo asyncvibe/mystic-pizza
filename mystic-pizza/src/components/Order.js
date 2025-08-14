@@ -1,6 +1,77 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+const containerVariants = {
+	hidden: {
+		opacity: 0,
+		x: "100vw",
+	},
+	visible: {
+		opacity: 1,
+		x: 0,
+		transition: {
+			type: "spring",
+			mass: 0.4,
+			damping: 8,
+			when: "beforeChildren",
+			staggerChildren: 0.3,
+		},
+	},
+};
+
+const childVariants = {
+	hidden: {
+		opacity: 0,
+		y: 20,
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			type: "spring",
+			stiffness: 300,
+			damping: 24,
+		},
+	},
+};
+
+const toppingVariants = {
+	hidden: {
+		opacity: 0,
+		scale: 0.8,
+		x: -20,
+	},
+	visible: (index) => ({
+		opacity: 1,
+		scale: 1,
+		x: 0,
+		transition: {
+			type: "spring",
+			stiffness: 300,
+			damping: 20,
+			delay: 1.5 + (index * 0.2), // Stagger toppings with delay
+		},
+	}),
+};
+
+const buttonVariants = {
+	hidden: {
+		opacity: 0,
+		y: 30,
+		scale: 0.9,
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		scale: 1,
+		transition: {
+			type: "spring",
+			stiffness: 300,
+			damping: 20,
+			delay: 2.5, // Appear after toppings
+		},
+	},
+};
 const Order = ({ pizza, onOrderComplete }) => {
 	const handleOrderComplete = () => {
 		if (onOrderComplete) {
@@ -8,46 +79,33 @@ const Order = ({ pizza, onOrderComplete }) => {
 		}
 	};
 
-	// Check if pizza data exists
-	if (!pizza || !pizza.base) {
-		return (
-			<motion.div
-				className="container order"
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ duration: 0.5 }}>
-				<motion.h2
-					initial={{ opacity: 0, y: -30 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 0.3, duration: 0.8 }}>
-					No Order Found
-				</motion.h2>
-				<motion.p
-					initial={{ opacity: 0, x: -20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.6, duration: 0.6 }}>
-					Please go back and create your pizza first!
-				</motion.p>
-			</motion.div>
-		);
-	}
-
 	return (
-		<div className="container order">
-			<h2>Thank you for your order :)</h2>
+		<div
+			className="container order"
+			variants={containerVariants}
+			initial="hidden"
+			animate="visible"
+			exit="exit">
+			<motion.h2 variants={childVariants}>
+				Thank you for your order :)
+			</motion.h2>
 
-			<p>
+			<motion.p variants={childVariants}>
 				You ordered a{" "}
 				<span style={{ color: "var(--secondary-orange)", fontWeight: "bold" }}>
 					{pizza.base}
 				</span>{" "}
 				pizza with:
-			</p>
+			</motion.p>
 
-			<div className="toppings-list">
+			<motion.div 
+				className="toppings-list"
+				variants={childVariants}>
 				{pizza.toppings && pizza.toppings.length > 0 ? (
 					pizza.toppings.map((topping, index) => (
-						<div
+						<motion.div
+							variants={toppingVariants}
+							custom={index}
 							key={topping}
 							style={{
 								padding: "8px 16px",
@@ -59,14 +117,19 @@ const Order = ({ pizza, onOrderComplete }) => {
 								marginRight: "8px",
 							}}>
 							{topping}
-						</div>
+						</motion.div>
 					))
 				) : (
-					<p style={{ color: "var(--text-muted)" }}>No toppings selected</p>
+					<motion.p 
+						variants={childVariants}
+						style={{ color: "var(--text-muted)" }}>
+						No toppings selected
+					</motion.p>
 				)}
-			</div>
+			</motion.div>
 
 			<motion.div
+				variants={buttonVariants}
 				style={{
 					display: "flex",
 					justifyContent: "center",
