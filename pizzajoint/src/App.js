@@ -6,7 +6,6 @@ import Base from "./components/Base";
 import Toppings from "./components/Toppings";
 import Order from "./components/Order";
 import LoadingSpinner from "./components/LoadingSpinner";
-import PriceCalculator from "./components/PriceCalculator";
 import SavedPizzas from "./components/SavedPizzas";
 import { AnimatePresence, motion } from "framer-motion";
 import {

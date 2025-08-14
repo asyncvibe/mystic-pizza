@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import PriceCalculator from "./PriceCalculator";
 
 const Toppings = ({ addTopping, pizza }) => {
 	let toppings = [
@@ -96,9 +95,7 @@ const Toppings = ({ addTopping, pizza }) => {
 						</motion.li>
 					);
 				})}
-			</motion.ul>
-
-			<PriceCalculator pizza={pizza} />
+						</motion.ul>
 
 			<Link to="/order">
 				<motion.button

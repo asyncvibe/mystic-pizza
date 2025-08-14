@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import PriceCalculator from "./PriceCalculator";
 import SavedPizzas from "./SavedPizzas";
 
 const Base = ({ addBase, pizza, onLoadPizza }) => {
@@ -102,21 +101,18 @@ const Base = ({ addBase, pizza, onLoadPizza }) => {
 				})}
 			</motion.ul>
 			{pizza.base && (
-				<>
-					<PriceCalculator pizza={pizza} />
-					<motion.div className="next" variants={nextVarient}>
-						<Link to="/toppings">
-							<motion.button
-								initial="initial"
-								animate="animate"
-								whileHover="hover"
-								whileTap="tap"
-								variants={buttonVarient}>
-								Next
-							</motion.button>
-						</Link>
-					</motion.div>
-				</>
+				<motion.div className="next" variants={nextVarient}>
+					<Link to="/toppings">
+						<motion.button
+							initial="initial"
+							animate="animate"
+							whileHover="hover"
+							whileTap="tap"
+							variants={buttonVarient}>
+							Next
+						</motion.button>
+					</Link>
+				</motion.div>
 			)}
 		</div>
 	);
