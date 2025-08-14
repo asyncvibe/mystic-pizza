@@ -1,3 +1,18 @@
+# 🍕 Mystic Pizza
+
+A modern, interactive pizza ordering application built with React and Framer Motion. Experience the magic of customizing your perfect pizza with smooth animations and intuitive design.
+
+## ✨ Features
+
+- **Interactive Pizza Builder**: Customize your pizza with real-time pricing
+- **Smooth Animations**: Beautiful page transitions and micro-interactions
+- **Local Storage**: Save and load your favorite pizza combinations
+- **Price Calculator**: Real-time cost updates as you build
+- **Modern UI**: Glass morphism design with gradient backgrounds
+- **Responsive Design**: Works perfectly on all devices
+
+## 🚀 Getting Started
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
