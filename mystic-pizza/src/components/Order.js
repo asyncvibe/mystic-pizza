@@ -22,11 +22,9 @@ const containerVariants = {
 const childVariants = {
 	hidden: {
 		opacity: 0,
-		y: 20,
 	},
 	visible: {
 		opacity: 1,
-		y: 0,
 		transition: {
 			type: "spring",
 			stiffness: 300,
@@ -41,7 +39,7 @@ const toppingVariants = {
 		scale: 0.8,
 		x: -20,
 	},
-	visible: (index) => ({
+	visible: {
 		opacity: 1,
 		scale: 1,
 		x: 0,
@@ -49,26 +47,23 @@ const toppingVariants = {
 			type: "spring",
 			stiffness: 300,
 			damping: 20,
-			delay: 1.5 + (index * 0.2), // Stagger toppings with delay
 		},
-	}),
+	},
 };
 
 const buttonVariants = {
 	hidden: {
 		opacity: 0,
-		y: 30,
 		scale: 0.9,
 	},
 	visible: {
 		opacity: 1,
-		y: 0,
 		scale: 1,
 		transition: {
 			type: "spring",
 			stiffness: 300,
 			damping: 20,
-			delay: 2.5, // Appear after toppings
+			delay: 3.5, // Appear after toppings are done
 		},
 	},
 };
@@ -98,14 +93,20 @@ const Order = ({ pizza, onOrderComplete }) => {
 				pizza with:
 			</motion.p>
 
-			<motion.div 
+			<motion.div
 				className="toppings-list"
-				variants={childVariants}>
+				variants={{
+					visible: {
+						transition: {
+							staggerChildren: 0.4,
+							delayChildren: 2.0,
+						},
+					},
+				}}>
 				{pizza.toppings && pizza.toppings.length > 0 ? (
 					pizza.toppings.map((topping, index) => (
 						<motion.div
 							variants={toppingVariants}
-							custom={index}
 							key={topping}
 							style={{
 								padding: "8px 16px",
@@ -120,7 +121,7 @@ const Order = ({ pizza, onOrderComplete }) => {
 						</motion.div>
 					))
 				) : (
-					<motion.p 
+					<motion.p
 						variants={childVariants}
 						style={{ color: "var(--text-muted)" }}>
 						No toppings selected

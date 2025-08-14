@@ -46,8 +46,8 @@ const Base = ({ addBase, pizza }) => {
 	return (
 		<div className="base container">
 			<motion.h3
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
 				transition={{ delay: 0.3, duration: 0.5 }}>
 				Step 1: Choose Your Base
 			</motion.h3>

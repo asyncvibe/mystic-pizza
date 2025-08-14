@@ -14,7 +14,7 @@ import {
 } from "./utils/localStorage";
 // Animate presence is being used to apply animation on routes.
 function App() {
-	const [pizza, setPizza] = useState(getCurrentOrder());
+	const [pizza, setPizza] = useState({ base: "", toppings: [] });
 	const [isLoading, setIsLoading] = useState(true);
 	const location = useLocation();
 
@@ -51,7 +51,7 @@ function App() {
 
 	return (
 		<>
-			<AnimatePresence mode="wait">
+			<AnimatePresence mode="wait" initial={false}>
 				{isLoading && <LoadingSpinner key="loading" />}
 			</AnimatePresence>
 
@@ -62,78 +62,113 @@ function App() {
 						position: "relative",
 					}}>
 					<Header />
-					<AnimatePresence mode="wait" initial={false}>
-						<Switch location={location} key={location.pathname}>
-							<Route path="/base">
-								<motion.div
-									initial={{
-										x: "100vw",
-										opacity: 0,
-									}}
-									animate={{ x: 0, opacity: 1 }}
-									exit={{ x: "-100vw", opacity: 0 }}
-									transition={{
-										type: "spring",
-										stiffness: 80,
-										damping: 15,
-										duration: 0.8,
-									}}>
-									<Base addBase={addBase} pizza={pizza} />
-								</motion.div>
-							</Route>
-							<Route path="/toppings">
-								<motion.div
-									initial={{
-										x: "100vw",
-										opacity: 0,
-									}}
-									animate={{ x: 0, opacity: 1 }}
-									exit={{ x: "-100vw", opacity: 0 }}
-									transition={{
-										type: "spring",
-										stiffness: 80,
-										damping: 15,
-										duration: 0.8,
-									}}>
-									<Toppings addTopping={addTopping} pizza={pizza} />
-								</motion.div>
-							</Route>
-							<Route path="/order">
-								<motion.div
-									initial={{
-										x: "100vw",
-										opacity: 0,
-									}}
-									animate={{ x: 0, opacity: 1 }}
-									exit={{ x: "-100vw", opacity: 0 }}
-									transition={{
-										type: "spring",
-										stiffness: 80,
-										damping: 15,
-										duration: 0.8,
-									}}>
-									<Order pizza={pizza} onOrderComplete={handleOrderComplete} />
-								</motion.div>
-							</Route>
-							<Route path="/">
-								<motion.div
-									initial={{
-										x: "100vw",
-										opacity: 0,
-									}}
-									animate={{ x: 0, opacity: 1 }}
-									exit={{ x: "-100vw", opacity: 0 }}
-									transition={{
-										type: "spring",
-										stiffness: 80,
-										damping: 15,
-										duration: 0.8,
-									}}>
-									<Home />
-								</motion.div>
-							</Route>
-						</Switch>
-					</AnimatePresence>
+					<div
+						style={{
+							paddingTop: "10px",
+							position: "relative",
+							minHeight: "calc(100vh - 200px)",
+						}}>
+						<AnimatePresence mode="wait" initial={false}>
+							<Switch location={location} key={location.pathname}>
+								<Route path="/base">
+									<motion.div
+										style={{
+											position: "absolute",
+											top: 0,
+											left: 0,
+											right: 0,
+											width: "100%",
+										}}
+										initial={{
+											x: "100%",
+											opacity: 0,
+										}}
+										animate={{ x: 0, opacity: 1 }}
+										exit={{ x: "-100%", opacity: 0 }}
+										transition={{
+											type: "spring",
+											stiffness: 300,
+											damping: 8,
+											duration: 1,
+										}}>
+										<Base addBase={addBase} pizza={pizza} />
+									</motion.div>
+								</Route>
+								<Route path="/toppings">
+									<motion.div
+										style={{
+											position: "absolute",
+											top: 0,
+											left: 0,
+											right: 0,
+											width: "100%",
+										}}
+										initial={{
+											x: "100%",
+											opacity: 0,
+										}}
+										animate={{ x: 0, opacity: 1 }}
+										exit={{ x: "-100%", opacity: 0 }}
+										transition={{
+											type: "spring",
+											stiffness: 300,
+											damping: 8,
+										}}>
+										<Toppings addTopping={addTopping} pizza={pizza} />
+									</motion.div>
+								</Route>
+								<Route path="/order">
+									<motion.div
+										style={{
+											position: "absolute",
+											top: 0,
+											left: 0,
+											right: 0,
+											width: "100%",
+										}}
+										initial={{
+											x: "100%",
+											opacity: 0,
+										}}
+										animate={{ x: 0, opacity: 1 }}
+										exit={{ x: "-100%", opacity: 0 }}
+										transition={{
+											type: "spring",
+											stiffness: 300,
+											damping: 8,
+										}}>
+										<Order
+											pizza={pizza}
+											onOrderComplete={handleOrderComplete}
+										/>
+									</motion.div>
+								</Route>
+								<Route path="/">
+									<motion.div
+										style={{
+											position: "absolute",
+											top: 0,
+											left: 0,
+											right: 0,
+											width: "100%",
+										}}
+										initial={{
+											x: "100%",
+											opacity: 0,
+										}}
+										animate={{ x: 0, opacity: 1 }}
+										exit={{ x: "-100%", opacity: 0 }}
+										transition={{
+											type: "spring",
+											stiffness: 300,
+											damping: 8,
+										}}>
+										<Home />
+									</motion.div>
+								</Route>
+							</Switch>
+						</AnimatePresence>
+					</div>
 				</div>
 			)}
 		</>

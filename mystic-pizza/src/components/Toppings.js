@@ -45,8 +45,8 @@ const Toppings = ({ addTopping, pizza }) => {
 	return (
 		<div className="toppings container">
 			<motion.h3
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
 				transition={{ delay: 0.3, duration: 0.5 }}>
 				Step 2: Choose Toppings
 			</motion.h3>
@@ -97,16 +97,18 @@ const Toppings = ({ addTopping, pizza }) => {
 				})}
 			</motion.ul>
 
-			<Link to="/order">
-				<motion.button
-					initial="initial"
-					animate="animate"
-					whileHover="hover"
-					whileTap="tap"
-					variants={buttonVarient}>
-					Order
-				</motion.button>
-			</Link>
+			{pizza.toppings && pizza.toppings.length > 0 && (
+				<Link to="/order">
+					<motion.button
+						initial="initial"
+						animate="animate"
+						whileHover="hover"
+						whileTap="tap"
+						variants={buttonVarient}>
+						Order
+					</motion.button>
+				</Link>
+			)}
 		</div>
 	);
 };
