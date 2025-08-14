@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import SavedPizzas from "./SavedPizzas";
 
-const Base = ({ addBase, pizza, onLoadPizza }) => {
+const Base = ({ addBase, pizza }) => {
 	const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 	const nextVarient = {
 		initial: {
@@ -44,10 +43,8 @@ const Base = ({ addBase, pizza, onLoadPizza }) => {
 			},
 		},
 	};
-	return (
+		return (
 		<div className="base container">
-			<SavedPizzas onLoadPizza={onLoadPizza} />
-
 			<motion.h3
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}

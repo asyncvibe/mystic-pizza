@@ -6,7 +6,6 @@ import Base from "./components/Base";
 import Toppings from "./components/Toppings";
 import Order from "./components/Order";
 import LoadingSpinner from "./components/LoadingSpinner";
-import SavedPizzas from "./components/SavedPizzas";
 import { AnimatePresence, motion } from "framer-motion";
 import {
 	saveCurrentOrder,
@@ -46,10 +45,7 @@ function App() {
 		saveCurrentOrder(newPizza);
 	};
 
-	const loadSavedPizza = (savedPizza) => {
-		setPizza(savedPizza);
-		saveCurrentOrder(savedPizza);
-	};
+
 
 	const handleOrderComplete = () => {
 		addToOrderHistory(pizza);
@@ -87,7 +83,6 @@ function App() {
 									<Base
 										addBase={addBase}
 										pizza={pizza}
-										onLoadPizza={loadSavedPizza}
 									/>
 								</motion.div>
 							</Route>

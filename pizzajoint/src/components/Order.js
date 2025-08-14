@@ -1,17 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { savePizza } from "../utils/localStorage";
 
 const Order = ({ pizza, onOrderComplete }) => {
-	const [isSaved, setIsSaved] = useState(false);
-
-	const handleSavePizza = () => {
-		if (savePizza(pizza)) {
-			setIsSaved(true);
-			setTimeout(() => setIsSaved(false), 2000);
-		}
-	};
-
 	const handleOrderComplete = () => {
 		if (onOrderComplete) {
 			onOrderComplete();
@@ -79,25 +69,9 @@ const Order = ({ pizza, onOrderComplete }) => {
 			<motion.div
 				style={{
 					display: "flex",
-					gap: "var(--spacing-md)",
-					marginTop: "var(--spacing-xl)",
 					justifyContent: "center",
+					marginTop: "var(--spacing-xl)",
 				}}>
-				<motion.button
-					onClick={handleSavePizza}
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
-					style={{
-						background: "rgba(255, 152, 0, 0.2)",
-						border: "1px solid var(--secondary-orange)",
-						color: "var(--text-white)",
-						padding: "var(--spacing-md) var(--spacing-lg)",
-						borderRadius: "var(--radius-md)",
-						cursor: "pointer",
-					}}>
-					{isSaved ? "✅ Saved!" : "💾 Save Pizza"}
-				</motion.button>
-
 				<motion.button
 					onClick={handleOrderComplete}
 					whileHover={{ scale: 1.05 }}

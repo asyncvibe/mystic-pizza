@@ -95,7 +95,7 @@ const Toppings = ({ addTopping, pizza }) => {
 						</motion.li>
 					);
 				})}
-						</motion.ul>
+			</motion.ul>
 
 			<Link to="/order">
 				<motion.button

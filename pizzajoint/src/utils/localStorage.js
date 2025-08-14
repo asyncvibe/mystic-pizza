@@ -1,56 +1,11 @@
 // Local Storage utilities for Pizza Joint
 
 const STORAGE_KEYS = {
-	SAVED_PIZZAS: "mystic_pizza_saved_pizzas",
 	CURRENT_ORDER: "mystic_pizza_current_order",
 	ORDER_HISTORY: "mystic_pizza_order_history",
 };
 
-export const savePizza = (pizza) => {
-	try {
-		const savedPizzas = getSavedPizzas();
-		const pizzaWithId = {
-			...pizza,
-			id: Date.now(),
-			savedAt: new Date().toISOString(),
-		};
 
-		savedPizzas.push(pizzaWithId);
-		localStorage.setItem(
-			STORAGE_KEYS.SAVED_PIZZAS,
-			JSON.stringify(savedPizzas)
-		);
-		return true;
-	} catch (error) {
-		console.error("Error saving pizza:", error);
-		return false;
-	}
-};
-
-export const getSavedPizzas = () => {
-	try {
-		const saved = localStorage.getItem(STORAGE_KEYS.SAVED_PIZZAS);
-		return saved ? JSON.parse(saved) : [];
-	} catch (error) {
-		console.error("Error getting saved pizzas:", error);
-		return [];
-	}
-};
-
-export const deleteSavedPizza = (pizzaId) => {
-	try {
-		const savedPizzas = getSavedPizzas();
-		const filteredPizzas = savedPizzas.filter((pizza) => pizza.id !== pizzaId);
-		localStorage.setItem(
-			STORAGE_KEYS.SAVED_PIZZAS,
-			JSON.stringify(filteredPizzas)
-		);
-		return true;
-	} catch (error) {
-		console.error("Error deleting saved pizza:", error);
-		return false;
-	}
-};
 
 export const saveCurrentOrder = (pizza) => {
 	try {
