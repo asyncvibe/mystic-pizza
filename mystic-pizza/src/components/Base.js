@@ -6,23 +6,23 @@ const Base = ({ addBase, pizza }) => {
 	const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 	const nextVarient = {
 		initial: {
-			x: "-100vw",
+			x: "100%",
 		},
 		animate: {
 			x: 0,
-			transition: { type: "spring", stiffness: 100 },
+			transition: { type: "spring", stiffness: 160, damping: 16 },
 		},
 	};
 	const buttonVarient = {
 		initial: {
-			x: "-100vw",
+			x: "100%",
 		},
 		animate: {
 			x: 0,
 			transition: {
 				type: "spring",
-				stiffness: 300,
-				duration: 2,
+				stiffness: 30,
+				damping: 5,
 			},
 		},
 		hover: {
@@ -98,14 +98,18 @@ const Base = ({ addBase, pizza }) => {
 				})}
 			</motion.ul>
 			{pizza.base && (
-				<motion.div className="next" variants={nextVarient}>
+				<motion.div
+					className="next"
+					variants={nextVarient}
+					initial="initial"
+					animate="animate">
 					<Link to="/toppings">
 						<motion.button
+							variants={buttonVarient}
 							initial="initial"
 							animate="animate"
 							whileHover="hover"
-							whileTap="tap"
-							variants={buttonVarient}>
+							whileTap="tap">
 							Next
 						</motion.button>
 					</Link>

@@ -11,16 +11,25 @@ const Toppings = ({ addTopping, pizza }) => {
 		"extra cheese",
 		"tomatoes",
 	];
+	const ctaVariant = {
+		initial: {
+			x: "100%",
+		},
+		animate: {
+			x: 0,
+			transition: { type: "spring", stiffness: 160, damping: 16 },
+		},
+	};
 	const buttonVarient = {
 		initial: {
-			x: "-100vw",
+			x: "100%",
 		},
 		animate: {
 			x: 0,
 			transition: {
 				type: "spring",
-				stiffness: 300,
-				duration: 2,
+				stiffness: 30,
+				damping: 5,
 			},
 		},
 		hover: {
@@ -41,7 +50,6 @@ const Toppings = ({ addTopping, pizza }) => {
 			},
 		},
 	};
-
 	return (
 		<div className="toppings container">
 			<motion.h3
@@ -98,16 +106,22 @@ const Toppings = ({ addTopping, pizza }) => {
 			</motion.ul>
 
 			{pizza.toppings && pizza.toppings.length > 0 && (
-				<Link to="/order">
-					<motion.button
-						initial="initial"
-						animate="animate"
-						whileHover="hover"
-						whileTap="tap"
-						variants={buttonVarient}>
-						Order
-					</motion.button>
-				</Link>
+				<motion.div
+					className="next"
+					variants={ctaVariant}
+					initial="initial"
+					animate="animate">
+					<Link to="/order">
+						<motion.button
+							variants={buttonVarient}
+							initial="initial"
+							animate="animate"
+							whileHover="hover"
+							whileTap="tap">
+							Order
+						</motion.button>
+					</Link>
+				</motion.div>
 			)}
 		</div>
 	);

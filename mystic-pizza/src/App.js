@@ -87,9 +87,8 @@ function App() {
 										exit={{ x: "-100%", opacity: 0 }}
 										transition={{
 											type: "spring",
-											stiffness: 300,
-											damping: 8,
-											duration: 1,
+											stiffness: 30,
+											damping: 4,
 										}}>
 										<Base addBase={addBase} pizza={pizza} />
 									</motion.div>
@@ -111,8 +110,8 @@ function App() {
 										exit={{ x: "-100%", opacity: 0 }}
 										transition={{
 											type: "spring",
-											stiffness: 300,
-											damping: 8,
+											stiffness: 30,
+											damping: 4,
 										}}>
 										<Toppings addTopping={addTopping} pizza={pizza} />
 									</motion.div>
@@ -134,8 +133,8 @@ function App() {
 										exit={{ x: "-100%", opacity: 0 }}
 										transition={{
 											type: "spring",
-											stiffness: 300,
-											damping: 8,
+											stiffness: 30,
+											damping: 4,
 										}}>
 										<Order
 											pizza={pizza}
@@ -160,8 +159,8 @@ function App() {
 										exit={{ x: "-100%", opacity: 0 }}
 										transition={{
 											type: "spring",
-											stiffness: 300,
-											damping: 8,
+											stiffness: 30,
+											damping: 4,
 										}}>
 										<Home />
 									</motion.div>

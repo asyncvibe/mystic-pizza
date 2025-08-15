@@ -217,13 +217,13 @@ const Header = () => {
 				className="title"
 				animate={{ y: -10 }}
 				initial={{ y: -250 }}
-				transition={{ delay: 1, type: "spring", stiffness: 300 }}>
+				transition={{ delay: 1, type: "spring", stiffness: 30, damping: 5 }}>
 				<h1>Mystic Pizza</h1>
 				<motion.p
 					className="tagline"
 					initial={{ opacity: 0, x: -50 }}
 					animate={{ opacity: 1, x: 0 }}
-					transition={{ delay: 3, duration: 0.8 }}>
+					transition={{ delay: 4, duration: 1 }}>
 					Where Magic Meets Flavor
 				</motion.p>
 			</motion.div>
